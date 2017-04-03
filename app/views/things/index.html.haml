@@ -1,27 +1,9 @@
 %h1 Alle innsendte ting
 
-%table
-  %thead
-    %tr
-      %th Bilde
-      %th Tid
-      %th Beskrivelse
-      %th Eier
-      %th
-      %th
-      %th
+#paginator= paginate @things, remote: true
 
-  %tbody
-    - @things.each do |thing|
-      %tr
-        %td= image_tag thing.image.url(:tiny)
-        %td= l thing.created_at, format: :short
-        %td= thing.description
-        %td= mail_to thing.email, thing.owner
-        %td= link_to 'Show', thing
-        %td= link_to 'Edit', edit_thing_path(thing)
-        %td= link_to 'Destroy', thing, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+#things_table
+  = render "table"
 %br
 
 = link_to 'New Thing', new_thing_path
