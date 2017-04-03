@@ -1,0 +1,12 @@
+%li.media
+  .media-left
+    = link_to thing do
+      = image_tag thing.image.url(:tiny)
+  .media-body
+    %h4.media-heading
+      = link_to thing.description, thing
+
+    %p
+      = succeed "," do
+        = l thing.created_at, format: :short
+      = mail_to thing.email, thing.owner
