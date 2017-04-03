@@ -6,7 +6,7 @@ class Thing < ApplicationRecord
       large: "1024x1024>"
     },
     convert_options: {
-      tiny: '-thumbnail',
+      tiny: '-strip',
       small: '-strip',
       large: '-strip'
     }
