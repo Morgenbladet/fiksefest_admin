@@ -56,3 +56,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Attachment and image handling
 gem 'paperclip', '~> 5.0.0'
 gem 'aws-sdk', '~> 2.3.0'
+
+# HAML for templating
+gem 'haml-rails'
