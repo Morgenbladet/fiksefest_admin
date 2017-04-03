@@ -1,0 +1,34 @@
+%p#notice= notice
+
+%p
+  %b Image:
+  = @thing.image
+%p
+  %b Description:
+  = @thing.description
+%p
+  %b Owner:
+  = @thing.owner
+%p
+  %b Email:
+  = @thing.email
+
+= link_to 'Edit', edit_thing_path(@thing)
+\|
+= link_to 'Back', things_path
+
+
+%h2 Bilder
+
+
+%h3 Original
+= image_tag @thing.image.url
+
+%h3 Stor
+= image_tag @thing.image.url(:large)
+
+%h3 Liten
+= image_tag @thing.image.url(:small)
+
+%h3 Bitteliten
+= image_tag @thing.image.url(:tiny)
