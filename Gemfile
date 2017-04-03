@@ -59,3 +59,6 @@ gem 'aws-sdk', '~> 2.3.0'
 
 # HAML for templating
 gem 'haml-rails'
+
+# Pagination
+gem 'kaminari'
