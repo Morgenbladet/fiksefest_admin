@@ -1,2 +1,2 @@
-$('#paginator').html('<%= escape_javascript(paginate(@things, remote: true).to_s) %>');
+$('#paginator').html('<%= escape_javascript(render(partial: 'things/paginator')) %>');
 $('#things_table').html('<%= escape_javascript(render(partial: 'things/table')) %>');

@@ -1,28 +1,32 @@
+%h1== ID #{@thing.id}
+
 %p#notice= notice
 
 %p
-  %b Image:
-  = @thing.image
+  = number_to_human_size(@thing.image_file_size)
+  = @thing.image_content_type
+  = link_to @thing.image_file_name, @thing.image.url
+
 %p
-  %b Description:
+  %b Beskrivelse:
   = @thing.description
 %p
-  %b Owner:
+  %b Innsender:
   = @thing.owner
 %p
-  %b Email:
+  %b E-post:
   = @thing.email
 
-= link_to 'Edit', edit_thing_path(@thing)
-\|
-= link_to 'Back', things_path
+.btn-group(role="group")
+  = link_to 'Rediger', edit_thing_path(@thing), class: %w(btn btn-primary)
+  = link_to 'Slett', @thing, method: :delete, class: %w(btn btn-danger),
+    confirm: 'Er du sikker?'
+  = link_to 'Tilbake', things_path, class: %w(btn btn-default)
 
 
 %h2 Bilder
 
 
-%h3 Original
-= link_to @thing.image.url
 
 %h3 Stor
 = image_tag @thing.image.url(:large)

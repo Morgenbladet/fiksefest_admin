@@ -1,4 +1,4 @@
-= form_for @thing do |f|
+= form_for @thing, html: { class: 'form-horizontal' } do |f|
   - if @thing.errors.any?
     #error_explanation
       %h2= "#{pluralize(@thing.errors.count, "error")} prohibited this thing from being saved:"
@@ -6,17 +6,19 @@
         - @thing.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :image
-    = f.file_field :image
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :owner
-    = f.text_field :owner
-  .field
-    = f.label :email
-    = f.text_field :email
-  .actions
-    = f.submit 'Save'
+  .form-group
+    = f.label :image, 'Bilde', class: 'col-sm-2 control-label'
+    .col-sm-10= f.file_field :image, class: 'form-control'
+  .form-group
+    = f.label :description, 'Beskrivelse', class: 'col-sm-2 control-label'
+    .col-sm-10= f.text_area :description, class: 'form-control'
+  .form-group
+    = f.label :owner, 'Innsender', class: 'col-sm-2 control-label'
+    .col-sm-10= f.text_field :owner, class: 'form-control'
+  .form-group
+    = f.label :email, 'E-post', class: 'col-sm-2 control-label'
+    .col-sm-10= f.email_field :email, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.button 'Lagre', type: :submit, class: %w(btn btn-primary)
+      = content_for :actions

@@ -1,9 +1,10 @@
 %h1 Alle innsendte ting
 
-#paginator= paginate @things, remote: true
+= link_to 'Ny ting', new_thing_path, class: %w(btn btn-primary)
+
+#paginator
+  = render "paginator"
 
 #things_table
   = render "table"
-%br
 
-= link_to 'New Thing', new_thing_path
