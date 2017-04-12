@@ -22,7 +22,7 @@ var fixedTop = false;
 
 var navbar_initialized = false;
 
-$(document).ready(function(){
+$(document).on("turbolinks:load", function(){
     window_width = $(window).width();
 
     // check if there is an image set for the sidebar's background

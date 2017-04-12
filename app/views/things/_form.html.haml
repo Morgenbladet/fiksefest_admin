@@ -32,5 +32,22 @@
       .form-group
         = f.label :email, 'E-post'
         = f.email_field :email, class: 'form-control'
+  .row
+    .col-md-12
+      .col-md-3
+        .radio
+          %label
+            = f.radio_button :status, "accepted", "data-toggle": "radio"
+            Godkjent
+      .col-md-3
+        .radio
+          %label
+            = f.radio_button :status, "in_queue", "data-toggle": "radio"
+            I moderasjonskø
+      .col-md-3
+        .radio
+          %label
+            = f.radio_button :status, "denied", "data-toggle": "radio"
+            Avvist
   = f.button 'Lagre', type: :submit, class: %w(btn btn-primary btn-fill)
   = content_for :actions

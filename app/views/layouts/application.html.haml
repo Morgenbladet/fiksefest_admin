@@ -26,3 +26,6 @@
         = render partial: 'navbar'
         .content
           .container-fluid= yield
+    - if flash.notice
+      :javascript
+        $.notify("#{flash.notice}");

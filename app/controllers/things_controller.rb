@@ -42,7 +42,7 @@ class ThingsController < ApplicationController
   def update
     respond_to do |format|
       if @thing.update(thing_params)
-        format.html { redirect_to @thing, notice: 'Thing was successfully updated.' }
+        format.html { redirect_to things_path, notice: 'Tingen ble lagret!' }
         format.json { render :show, status: :ok, location: @thing }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class ThingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def thing_params
-      params.require(:thing).permit(:title, :image, :description, :owner, :email)
+      params.require(:thing).permit(:title, :image, :description, :owner, :email, :status)
     end
 end

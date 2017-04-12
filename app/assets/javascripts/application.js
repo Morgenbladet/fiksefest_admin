@@ -11,7 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
 //= require light-bootstrap-dashboard
+//= require bootstrap-checkbox-radio-switch
+//= require bootstrap-notify

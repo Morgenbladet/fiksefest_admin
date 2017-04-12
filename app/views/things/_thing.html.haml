@@ -1,4 +1,4 @@
-%tr
+%tr{class: thing_accepted_table_class(thing)}
   %td
     = link_to(thing) do
       = image_tag thing.image.url(:tiny),
@@ -8,7 +8,7 @@
   %td= l thing.created_at, format: :short
   %td 0
   %td
-    = link_to 'Vis', thing, class: %w(btn btn-sm btn-primary)
+    = link_to 'Vis', thing, class: %w(btn btn-sm btn-primary btn-fill)
     = link_to 'Slett',
       thing,
       method: :delete,

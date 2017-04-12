@@ -2,7 +2,7 @@
   == Bilde (ID #{@thing.id})
 
 .row
-  .col-xs-12
+  .col-md-8
     .card
       .header
         %h4.title= @thing.title
@@ -12,18 +12,41 @@
             = @thing.image_content_type
           = link_to @thing.image_file_name, @thing.image.url
       .content
-        %p= @thing.description
-        %p
-          Sendt inn av:
-          = @thing.owner
-          = surround('<', '>') do 
-            = @thing.email
-
+        %blockquote
+          = simple_format @thing.description
+          %footer
+            Sendt inn av
+            = @thing.owner
+            = surround('<', '>') do 
+              = @thing.email
+  .col-md-4
+    .card
+      .header
+        %h4 Handlinger
+      .content
         .btn-group(role="group")
           = link_to 'Rediger', edit_thing_path(@thing), class: %w(btn btn-primary btn-fill)
           = link_to 'Slett', @thing, method: :delete, class: %w(btn btn-danger btn-fill),
             confirm: 'Er du sikker?'
           = link_to 'Tilbake', things_path, class: %w(btn btn-default btn-fill)
+    .card
+      .header
+        %h4 Moderering
+      .content
+        = form_for @thing do |f|
+          .radio
+            %label
+              = f.radio_button :status, "accepted", data: { toggle: 'radio' }
+              Godkjent
+          .radio
+            %label
+              = f.radio_button :status, "in_queue", data: { toggle: 'radio' }
+              I moderasjonskø
+          .radio
+            %label
+              = f.radio_button :status, "denied", data: { toggle: 'radio' }
+              Avvist
+          = f.button 'Lagre', type: :submit, class: %w(btn btn-primary btn-fill)
 
 .row
   .col-md-2

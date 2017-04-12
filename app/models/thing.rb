@@ -17,4 +17,6 @@ class Thing < ApplicationRecord
     size: { in: 0..10.megabytes }
 
   validates :title, presence: true
+
+  enum status: [ :in_queue, :accepted, :denied ]
 end
