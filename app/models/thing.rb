@@ -15,4 +15,6 @@ class Thing < ApplicationRecord
     presence: true,
     content_type: { content_type: %w(image/jpeg image/gif image/png) },
     size: { in: 0..10.megabytes }
+
+  validates :title, presence: true
 end

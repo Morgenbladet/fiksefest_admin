@@ -5,22 +5,19 @@
   .col-xs-12
     .card
       .header
-        %h4.title Original
+        %h4.title= @thing.title
         %p.category
           = succeed ": " do
             = number_to_human_size(@thing.image_file_size)
             = @thing.image_content_type
           = link_to @thing.image_file_name, @thing.image.url
       .content
+        %p= @thing.description
         %p
-          %b Beskrivelse:
-          = @thing.description
-        %p
-          %b Innsender:
+          Sendt inn av:
           = @thing.owner
-        %p
-          %b E-post:
-          = @thing.email
+          = surround('<', '>') do 
+            = @thing.email
 
         .btn-group(role="group")
           = link_to 'Rediger', edit_thing_path(@thing), class: %w(btn btn-primary btn-fill)

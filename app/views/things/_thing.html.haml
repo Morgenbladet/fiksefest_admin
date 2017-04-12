@@ -3,6 +3,7 @@
     = link_to(thing) do
       = image_tag thing.image.url(:tiny),
         style: "width: 48px;", class: "img-thumbnail"
+  %td= link_to truncate(thing.title, length: 20), thing
   %td= mail_to thing.email, thing.owner
   %td= l thing.created_at, format: :short
   %td 0
