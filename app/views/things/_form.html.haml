@@ -1,24 +1,31 @@
-= form_for @thing, html: { class: 'form-horizontal' } do |f|
+= form_for @thing do |f|
   - if @thing.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@thing.errors.count, "error")} prohibited this thing from being saved:"
+    .alert.alert-warning
+      %strong Noe er galt!
+      == #{@thing.errors.count} feil forhindret lagring:
       %ul
         - @thing.errors.full_messages.each do |msg|
           %li= msg
 
-  .form-group
-    = f.label :image, 'Bilde', class: 'col-sm-2 control-label'
-    .col-sm-10= f.file_field :image, class: 'form-control'
-  .form-group
-    = f.label :description, 'Beskrivelse', class: 'col-sm-2 control-label'
-    .col-sm-10= f.text_area :description, class: 'form-control'
-  .form-group
-    = f.label :owner, 'Innsender', class: 'col-sm-2 control-label'
-    .col-sm-10= f.text_field :owner, class: 'form-control'
-  .form-group
-    = f.label :email, 'E-post', class: 'col-sm-2 control-label'
-    .col-sm-10= f.email_field :email, class: 'form-control'
-  .form-group
-    .col-sm-offset-2.col-sm-10
-      = f.button 'Lagre', type: :submit, class: %w(btn btn-primary)
-      = content_for :actions
+  .row
+    .col-xs-10.col-lg-11
+      .form-group
+        = f.label :image, (f.object.image? ? 'Erstatt bilde med' : 'Bildefil')
+        = f.file_field :image, class: 'form-control'
+    .col-xs-2.col-lg-1= image_tag f.object.image(:tiny) if f.object.image?
+  .row
+    .col-md-12
+      .form-group
+        = f.label :description, 'Beskrivelse'
+        = f.text_area :description, class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :owner, 'Innsender'
+        = f.text_field :owner, class: 'form-control'
+    .col-md-6
+      .form-group
+        = f.label :email, 'E-post'
+        = f.email_field :email, class: 'form-control'
+  = f.button 'Lagre', type: :submit, class: %w(btn btn-primary btn-fill)
+  = content_for :actions

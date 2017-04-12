@@ -1,12 +1,15 @@
-%li.media
-  .media-left
-    = link_to thing do
-      = image_tag thing.image.url(:tiny)
-  .media-body
-    %h4.media-heading
-      = link_to thing.description, thing
-
-    %p
-      = succeed "," do
-        = l thing.created_at, format: :short
-      = mail_to thing.email, thing.owner
+%tr
+  %td
+    = link_to(thing) do
+      = image_tag thing.image.url(:tiny),
+        style: "width: 48px;", class: "img-thumbnail"
+  %td= mail_to thing.email, thing.owner
+  %td= l thing.created_at, format: :short
+  %td 0
+  %td
+    = link_to 'Vis', thing, class: %w(btn btn-sm btn-primary)
+    = link_to 'Slett',
+      thing,
+      method: :delete,
+      class: %w(btn btn-sm btn-danger),
+      data: { confirm: 'Er du sikker?' }

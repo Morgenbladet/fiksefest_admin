@@ -1,7 +1,14 @@
-%h1 New thing
+= content_for :title do
+  Ny ting
 
-- content_for :actions do
-  = link_to 'Avbryt', things_path, class: %w(btn btn-link)
+.row
+  .col-xs-12
+    .card
+      .header
+        %h4.title Opprett ny ting
+      .content
+        - content_for :actions do
+          = link_to 'Avbryt', things_path, class: %w(btn btn-default btn-fill)
 
-= render 'form'
+        = render 'form'
 

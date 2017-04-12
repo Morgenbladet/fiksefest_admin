@@ -1,0 +1,12 @@
+%nav.navbar.navbar-default.navbar-fixed
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle{data: { toggle: 'collapse', target: '#navigation' }}
+        %span.sr-only Toggle nav
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to content_for(:title) || "Tittel", '#', class: 'navbar-brand'
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to 'Logg ut', "#"

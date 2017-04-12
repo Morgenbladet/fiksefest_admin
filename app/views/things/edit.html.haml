@@ -1,7 +1,13 @@
-%h1 Redigere ting
+- content_for :title do
+  Redigere ting
 
-- content_for :actions do
-  = link_to 'Avbryt', @thing, class: %w(btn btn-link)
-
-= render 'form'
+.row
+  .col-xs-12
+    .card
+      .header
+        %h4.title Redigere ting
+      .content
+        - content_for :actions do
+          = link_to 'Avbryt', @thing, class: %w(btn btn-link)
+        = render 'form'
 

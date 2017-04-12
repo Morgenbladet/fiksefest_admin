@@ -1,10 +1,20 @@
-%h1 Alle innsendte ting
+= content_for :title do
+  Alle ting
 
-= link_to 'Ny ting', new_thing_path, class: %w(btn btn-primary)
+.row
+  .col-xs-12
+    .card
+      .header
+        = link_to 'Ny ting', new_thing_path, class: %w(btn btn-primary btn-fill btn-sm pull-right)
+        %h4.title Innsendte ting
+        %p.category Sortert etter dato
 
-#paginator
-  = render "paginator"
+      .content
+        #paginator
+          = render "paginator"
 
-#things_table
-  = render "table"
+      .content.table-responsive.table-full-width
+        #things_table
+          = render "table"
+
 

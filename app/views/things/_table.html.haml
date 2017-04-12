@@ -1,1 +1,9 @@
-%ul.media-list= render @things
+%table.table.table-hover.table-striped
+  %thead
+    %th Bilde
+    %th Innsender
+    %th Dato
+    %th Kommentarer
+    %th
+  %tbody
+    = render @things

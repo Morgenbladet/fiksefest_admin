@@ -1,38 +1,49 @@
-%h1== ID #{@thing.id}
+- content_for :title do
+  == Bilde (ID #{@thing.id})
 
-%p#notice= notice
+.row
+  .col-xs-12
+    .card
+      .header
+        %h4.title Original
+        %p.category
+          = succeed ": " do
+            = number_to_human_size(@thing.image_file_size)
+            = @thing.image_content_type
+          = link_to @thing.image_file_name, @thing.image.url
+      .content
+        %p
+          %b Beskrivelse:
+          = @thing.description
+        %p
+          %b Innsender:
+          = @thing.owner
+        %p
+          %b E-post:
+          = @thing.email
 
-%p
-  = number_to_human_size(@thing.image_file_size)
-  = @thing.image_content_type
-  = link_to @thing.image_file_name, @thing.image.url
+        .btn-group(role="group")
+          = link_to 'Rediger', edit_thing_path(@thing), class: %w(btn btn-primary btn-fill)
+          = link_to 'Slett', @thing, method: :delete, class: %w(btn btn-danger btn-fill),
+            confirm: 'Er du sikker?'
+          = link_to 'Tilbake', things_path, class: %w(btn btn-default btn-fill)
 
-%p
-  %b Beskrivelse:
-  = @thing.description
-%p
-  %b Innsender:
-  = @thing.owner
-%p
-  %b E-post:
-  = @thing.email
-
-.btn-group(role="group")
-  = link_to 'Rediger', edit_thing_path(@thing), class: %w(btn btn-primary)
-  = link_to 'Slett', @thing, method: :delete, class: %w(btn btn-danger),
-    confirm: 'Er du sikker?'
-  = link_to 'Tilbake', things_path, class: %w(btn btn-default)
-
-
-%h2 Bilder
-
-
-
-%h3 Stor
-= image_tag @thing.image.url(:large)
-
-%h3 Liten
-= image_tag @thing.image.url(:small)
-
-%h3 Bitteliten
-= image_tag @thing.image.url(:tiny)
+.row
+  .col-md-2
+    .card
+      .header
+        %h4.title Thumb
+      .content
+        = image_tag @thing.image.url(:tiny), class: "img-responsive"
+  .col-md-3
+    .card
+      .header
+        %h4.title Kvadrat
+      .content
+        = image_tag @thing.image.url(:small), class: "img-responsive"
+  .col-md-7
+    .card
+      .header
+        %h4.title Stor
+      .content
+        = image_tag @thing.image.url(:large), class: "img-responsive"
