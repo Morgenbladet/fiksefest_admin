@@ -736,7 +736,7 @@ body > .navbar-collapse {
     outline: 0 !important;
     color: #333333; }
   .has-success .form-control, .has-error .form-control, .has-success .form-control:focus, .has-error .form-control:focus {
-    border-color: #E3E3E3;
+    //border-color: #E3E3E3;
     -webkit-box-shadow: none;
     box-shadow: none; }
   .has-success .form-control {
