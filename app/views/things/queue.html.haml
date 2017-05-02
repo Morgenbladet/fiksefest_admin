@@ -1,0 +1,34 @@
+- content_for :title do
+  Moderasjonskø
+
+.row
+  - @things.each do |thing|
+    .col-xs-12.col-md-6.col-lg-4[thing]
+      .card
+        .header
+          %h4.title
+            = link_to (thing.title || "Bilde uten tittel"), thing
+          %p.category
+            = thing.owner.blank? ? "Anonym" : thing.owner
+            - unless thing.email.blank?
+              = surround("<", ">") do
+                = mail_to thing.email
+        .content
+          .image-text-container
+            .image-text
+              = simple_format truncate(thing.description, length: 400)
+            = link_to thing do
+              = image_tag thing.image(:small), class: "img-responsive img-rounded"
+          .footer
+            = form_for thing, remote: true do |f|
+              .btn-group{ data: { toggle: 'buttons' } }
+                = f.label :status_accepted, class: %w(btn btn-primary btn-fill) do
+                  = f.radio_button :status, 'accepted', class: 'submit-on-click'
+                  Godkjenn
+                = f.label :status_denied, class: %w(btn btn-danger btn-fill) do
+                  = f.radio_button :status, 'denied', class: 'submit-on-click'
+                  Avvis
+            %hr
+            .stats
+              %i.fa.fa-clock-o
+              = l thing.created_at, format: :long

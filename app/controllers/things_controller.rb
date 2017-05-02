@@ -7,6 +7,11 @@ class ThingsController < ApplicationController
     @things = Thing.order(:created_at).page params[:page]
   end
 
+  def queue
+    @things = Thing.in_queue.order(:created_at).page params[:page]
+    @title = "Ting i moderasjonskø"
+  end
+
   # GET /things/1
   # GET /things/1.json
   def show
@@ -44,9 +49,11 @@ class ThingsController < ApplicationController
       if @thing.update(thing_params)
         format.html { redirect_to things_path, notice: 'Tingen ble lagret!' }
         format.json { render :show, status: :ok, location: @thing }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @thing.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

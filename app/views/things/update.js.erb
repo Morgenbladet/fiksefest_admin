@@ -1,0 +1,14 @@
+<% unless @thing.changed? %>
+  console.log("Removing <%= @thing.id %>");
+  $('#thing_<%= @thing.id %>').fadeOut();
+  $.notify("Statusendringen for bildet '<%= @thing.title %>' ble lagret");
+<% else %>
+  $.notify({
+    message: "Statusendringen kunne ikke lagres!",
+    title: "Feil under lagring",
+    icon: "pe-7s-attention",
+    url: "<%= url_for @thing %>"
+  }, {
+    type: 'danger'
+  });
+<% end %>

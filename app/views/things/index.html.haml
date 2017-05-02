@@ -1,12 +1,12 @@
 = content_for :title do
-  Alle ting
+  = @title || "Alle ting"
 
 .row
   .col-xs-12
     .card
       .header
         = link_to 'Ny ting', new_thing_path, class: %w(btn btn-primary btn-fill btn-sm pull-right)
-        %h4.title Innsendte ting
+        %h4.title= @title || "Innsendte ting"
         %p.category Sortert etter dato
 
       .content

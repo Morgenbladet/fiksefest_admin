@@ -13,6 +13,8 @@
     = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Roboto:400,700,300'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
+    = csrf_meta_tags
+
   %body
     .wrapper
       .sidebar{data: { color: 'green', image: image_path('backgrounds/sidebar-1.jpg') }}
@@ -20,8 +22,7 @@
           .logo= link_to 'Fiksefest', '/', class: 'simple-text'
           %ul.nav
             = nav_li_active? 'Alle ting', things_path
-            = nav_li_active? 'Moderasjonskø', things_path
-            = nav_li_active? 'Kommentarer', things_path
+            = nav_li_active? 'Moderasjonskø', queue_things_path, badge: Thing.in_queue.count
       .main-panel
         = render partial: 'navbar'
         .content

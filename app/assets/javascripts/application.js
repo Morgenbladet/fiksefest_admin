@@ -18,3 +18,4 @@
 //= require light-bootstrap-dashboard
 //= require bootstrap-checkbox-radio-switch
 //= require bootstrap-notify
+//= require things
