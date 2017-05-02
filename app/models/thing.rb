@@ -16,6 +16,9 @@ class Thing < ApplicationRecord
     content_type: { content_type: %w(image/jpeg image/gif image/png) },
     size: { in: 0..10.megabytes }
 
+  process_in_background :image,
+    processing_image_url: 'https://s3.eu-central-1.amazonaws.com/fiksefest/processing.png'
+
   validates :title, presence: true
 
   enum status: [ :in_queue, :accepted, :denied ]

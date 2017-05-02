@@ -75,3 +75,7 @@ gem 'devise'
 
 # Email
 gem 'postmark-rails', group: [ :production, :development ]
+
+# Don't process immediately
+gem 'delayed_paperclip'
+gem 'resque', "~> 1.27.0"
