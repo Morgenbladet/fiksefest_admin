@@ -12,9 +12,9 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'gj_utsendelse@morgenbladet.no'
+  config.mailer_sender = 'utsendelse@morgenbladet.no'
 
-  # Configure the class responsible to send e-mails.
+ # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
   # Configure the parent class responsible to send e-mails.

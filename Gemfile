@@ -71,3 +71,6 @@ gem 'jquery-turbolinks'
 
 # Authentication
 gem 'devise'
+
+# Email
+gem 'postmark-rails', group: [ :production, :development ]
