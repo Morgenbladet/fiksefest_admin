@@ -4,4 +4,6 @@ Rails.application.routes.draw do
       get :queue
     end
   end
+
+  root to: "things#index"
 end
