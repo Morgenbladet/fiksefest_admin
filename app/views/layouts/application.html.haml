@@ -1,41 +1,14 @@
-!!!5
-%html(lang="en")
-  %head
-    %meta(charset="UTF-8")
-    %meta(http-equiv="X-UA-COMPATIBLE" content="IE=edge")
-    %meta(name="viewport" content="width=device-width, initial-scale=1")
-    %title Fiksefestadmin
+= render "shared/header" do
+  .wrapper
+    .sidebar{data: { color: 'green', image: image_path('backgrounds/sidebar-1.jpg') }}
+      .sidebar-wrapper
+        .logo= link_to 'Fiksefest', '/', class: 'simple-text'
+        %ul.nav
+          = nav_li_active? 'Alle ting', things_path
+          = nav_li_active? 'Moderasjonskø', queue_things_path, badge: Thing.in_queue.count
+    .main-panel
+      = render partial: 'navbar'
+      .content
+        .container-fluid= yield
 
-    = stylesheet_link_tag 'application',
-      media: 'all',
-      'data-turbolinks-track': 'reload'
-    = stylesheet_link_tag 'http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
-    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Roboto:400,700,300'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-
-    = csrf_meta_tags
-
-  %body
-    .wrapper
-      .sidebar{data: { color: 'green', image: image_path('backgrounds/sidebar-1.jpg') }}
-        .sidebar-wrapper
-          .logo= link_to 'Fiksefest', '/', class: 'simple-text'
-          %ul.nav
-            = nav_li_active? 'Alle ting', things_path
-            = nav_li_active? 'Moderasjonskø', queue_things_path, badge: Thing.in_queue.count
-      .main-panel
-        = render partial: 'navbar'
-        .content
-          .container-fluid= yield
-
-    - if flash.notice
-      :javascript
-        $.notify("#{flash.notice}");
-    - if flash.alert
-      :javascript
-        $.notify({
-          message: "#{flash.alert}",
-          icon: "pe-7s-attention"
-        }, {
-          type: 'warning'
-        });
+  = render "shared/flash"

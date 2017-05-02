@@ -9,4 +9,4 @@
       = link_to content_for(:title) || "Tittel", '#', class: 'navbar-brand'
     .collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to 'Logg ut', "#"
+        %li= link_to 'Logg ut', destroy_user_session_path, method: :delete

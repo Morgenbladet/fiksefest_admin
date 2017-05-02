@@ -1,0 +1,11 @@
+- if flash.notice
+  :javascript
+    $.notify("#{flash.notice}");
+- if flash.alert
+  :javascript
+    $.notify({
+      message: "#{flash.alert}",
+      icon: "pe-7s-attention"
+    }, {
+      type: 'warning'
+    });
