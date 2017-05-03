@@ -6,10 +6,14 @@ class Api::ThingsController < ApiController
     @n=6 if @n > 10
 
     @things = Thing.published.order("RANDOM()").first(@n)
+
+    render json: @things
   end
 
   def show
     @thing = Thing.find(params[:id])
+
+    render json: @thing
   end
 
   def create
@@ -17,7 +21,7 @@ class Api::ThingsController < ApiController
 
     respond_to do |format|
       if @thing.save
-        format.json { render :show, status: :created, location: api_thing_url(@thing) }
+        format.json { render json: @thing, status: :created, location: api_thing_url(@thing) }
       else
         format.json { render json: @thing.errors, status: :unprocessable_entity }
       end
