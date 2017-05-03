@@ -1,7 +1,7 @@
 class Api::ThingSerializer < ActiveModel::Serializer
   attributes :id, :title, :description, :owner,
     :created_at
-  attribute :image do
+  attribute :image_links do
     {
       large:  object.image.url(:large),
       square: object.image.url(:small),
