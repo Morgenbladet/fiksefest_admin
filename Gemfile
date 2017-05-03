@@ -82,3 +82,4 @@ gem 'resque', "~> 1.27.0"
 
 # JSON API
 gem 'active_model_serializers', '~> 0.10.6'
+gem 'rack-cors'
