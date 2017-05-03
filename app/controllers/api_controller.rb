@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  protect_from_forgery with: :exception, unless: -> { request.format.json? }
+  skip_before_action :verify_authenticity_token
 
   def authenticate_user!
     true
