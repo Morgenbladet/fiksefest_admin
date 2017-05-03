@@ -4,4 +4,4 @@ json.image do
   json.square thing.image.url(:small)
   json.thumb  thing.image.url(:tiny)
 end
-json.url thing_url(thing, format: :json)
+json.url api_thing_url(thing, format: :json)

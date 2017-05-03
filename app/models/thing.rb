@@ -22,4 +22,6 @@ class Thing < ApplicationRecord
   validates :title, presence: true
 
   enum status: [ :in_queue, :accepted, :denied ]
+
+  scope :published, -> { where(status: 'accepted') }
 end
