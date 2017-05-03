@@ -1,6 +1,4 @@
 class Api::ThingsController < ApiController
-  respond_to :json
-
   def index
     @n = params[:n].try(:to_i) || 6
     @n=6 if @n > 10
@@ -22,8 +20,10 @@ class Api::ThingsController < ApiController
     respond_to do |format|
       if @thing.save
         format.json { render json: @thing, status: :created, location: api_thing_url(@thing) }
+        format.html { redirect_to 'https://morgenbladet.no/fiksefest/#/takk' }
       else
         format.json { render json: @thing.errors, status: :unprocessable_entity }
+        format.html { redirect_to 'https://morgenbladet.no/fiksefest/#/error' }
       end
     end
   end
