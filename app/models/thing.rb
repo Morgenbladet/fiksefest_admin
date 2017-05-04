@@ -11,7 +11,8 @@ class Thing < ApplicationRecord
       tiny: '-strip',
       small: '-strip',
       large: '-strip'
-    }
+    },
+    s3_protocol: :https
 
   validates_attachment :image,
     presence: true,

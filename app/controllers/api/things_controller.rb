@@ -1,11 +1,8 @@
 class Api::ThingsController < ApiController
   def index
-    @n = params[:n].try(:to_i) || 6
-    @n=6 if @n > 10
+    @things = Thing.published.order(created_at: :desc).page(params[:page]).per(params[:per_page] || 3)
 
-    @things = Thing.published.order("RANDOM()").first(@n)
-
-    render json: @things, include: ['comments']
+    render json: @things, include: params[:include], meta: pagination_dict(@things)
   end
 
   def show
@@ -35,4 +32,13 @@ class Api::ThingsController < ApiController
     params.require(:thing).permit(:title, :image, :description, :owner, :email)
   end
 
+  def pagination_dict(collection)
+    {
+      total_pages: collection.total_pages,
+      total_count: collection.total_count,
+      prev_page: collection.prev_page,
+      next_page: collection.next_page,
+      current_page: collection.current_page
+    }
+  end
 end
