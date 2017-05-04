@@ -5,13 +5,13 @@ class Api::ThingsController < ApiController
 
     @things = Thing.published.order("RANDOM()").first(@n)
 
-    render json: @things
+    render json: @things, include: ['comments']
   end
 
   def show
     @thing = Thing.find(params[:id])
 
-    render json: @thing
+    render json: @thing, include: ['comments']
   end
 
   def create

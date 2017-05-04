@@ -1,0 +1,24 @@
+%li.comment
+  %blockquote
+    = simple_format comment.text
+    %footer
+      = l comment.created_at, format: :long
+      av
+      = comment.name
+      = surround '<', '>.' do
+        = comment.email
+      - if comment.published?
+        Kommentaren er
+        %span.text-success publisert.
+        = link_to "Avpubliser", comment_path(id: comment.id, comment: { published: false }), method: :patch, class: %w(btn btn-warning btn-xs)
+      - else
+        Kommentaren er
+        %span.text-warning skjult.
+        = link_to "Publiser", comment_path(id: comment.id, comment: { published: true }), method: :patch, class: %w(btn btn-success btn-xs)
+      = link_to "Slett", comment, method: :delete, data: { confirm: 'Er du sikker?' }, class: %w(btn btn-danger btn-xs)
+
+
+
+
+
+

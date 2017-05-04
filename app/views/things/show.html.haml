@@ -67,3 +67,12 @@
         %h4.title Stor
       .content
         = image_tag @thing.image.url(:large), class: "img-responsive"
+
+.row
+  .col-xs-12
+    .card
+      .header
+        %h4.title Kommentarer
+      .content
+        %ul.comments
+          = render(@thing.comments) || "Ingen kommentarer"
