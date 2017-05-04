@@ -1,0 +1,12 @@
+%h1 New thing
+
+%p
+  = link_to @thing.title, @thing
+
+%p= @thing.owner
+
+%p= simple_format(@thing.description)
+
+%img{src: @thing.image.url(:large)}
+
+

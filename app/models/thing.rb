@@ -1,4 +1,6 @@
 class Thing < ApplicationRecord
+  after_update :send_email, if: :just_accepted?
+
   has_attached_file :image,
     styles: {
       tiny: "64x64#",
@@ -29,4 +31,14 @@ class Thing < ApplicationRecord
   has_many :published_comments,
     -> { order(created_at: :asc).where(published: true) },
     class_name: 'Comment'
+
+  private
+
+  def just_accepted?
+    status_changed? && accepted?
+  end
+
+  def send_email
+    ThingsMailer.accepted(self).deliver_now
+  end
 end

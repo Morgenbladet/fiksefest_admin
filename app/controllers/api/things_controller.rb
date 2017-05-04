@@ -19,6 +19,7 @@ class Api::ThingsController < ApiController
 
     respond_to do |format|
       if @thing.save
+        ThingsMailer.submitted(@thing).deliver_now
         format.json { render json: @thing, status: :created, location: api_thing_url(@thing) }
         format.html { redirect_to 'https://morgenbladet.no/fiksefest/#/takk' }
       else
