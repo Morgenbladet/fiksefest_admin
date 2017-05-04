@@ -6,7 +6,7 @@
   %td= link_to truncate(thing.title, length: 20), thing
   %td= mail_to thing.email, thing.owner
   %td= l thing.created_at, format: :short
-  %td 0
+  %td= thing.comments.count
   %td
     = link_to 'Vis', thing, class: %w(btn btn-sm btn-primary btn-fill)
     = link_to 'Slett',
