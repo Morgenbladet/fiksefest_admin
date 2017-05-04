@@ -1,11 +1,10 @@
 class Api::CommentsController < ApiController
-  before_action :set_thing
-
   def create
-    @comment = @thing.comments.new(comment_params)
+    @comment = Comment.new(comment_params)
 
     respond_to do |format|
       if @comment.save
+        @thing = @comment.thing
         format.json { render json: @comment.thing, status: :created, location: api_thing_url(@comment.thing) }
         format.html { redirect_to "https://morgenbladet.bo/fiksefest/#/thing/#{@thing.id}" }
       else
@@ -17,11 +16,7 @@ class Api::CommentsController < ApiController
 
   private
 
-  def set_thing
-    @thing = Thing.find(params[:thing_id])
-  end
-
   def comment_params
-    params.require(:comment).permit(:name, :email, :text)
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params)
   end
 end

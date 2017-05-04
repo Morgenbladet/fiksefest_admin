@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :things, only: [:index, :show, :create] do
-      resources :comments, only: [ :create ]
-    end
+    resources :comments, only: [ :create ]
+    resources :things, only: [:index, :show, :create]
   end
 
   devise_for :users
