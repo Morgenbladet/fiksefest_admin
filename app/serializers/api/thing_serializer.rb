@@ -1,11 +1,7 @@
 class Api::ThingSerializer < ActiveModel::Serializer
   include ActionView::Helpers::TextHelper
 
-  attributes :id, :title, :owner, :created_at
-  
-  attribute :description do
-    simple_format(object.description)
-  end
+  attributes :id, :title, :owner, :description, :created_at
 
   attribute :image_links do
     {
