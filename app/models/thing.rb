@@ -33,6 +33,10 @@ class Thing < ApplicationRecord
     -> { order(created_at: :asc).where(published: true) },
     class_name: 'Comment'
 
+  def frontend_url
+    "https://morgenbladet.no/fiksefest#/thing/%s" %⊏[ self.id ]
+  end
+
   private
 
   def just_accepted?

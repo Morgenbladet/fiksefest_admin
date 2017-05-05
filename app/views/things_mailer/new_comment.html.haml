@@ -1,0 +1,7 @@
+%h1 Ny kommentar
+
+%p== #{@comment.name} har kommentert på din ting (#{@thing.title}):
+
+%blockquote= simple_format(@comment.text)
+
+%a{href: @thing.frontend_url} Se kommentaren
