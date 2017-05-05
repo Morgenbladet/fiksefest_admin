@@ -34,7 +34,7 @@ class Thing < ApplicationRecord
     class_name: 'Comment'
 
   def frontend_url
-    "https://morgenbladet.no/fiksefest#/thing/%s" %⊏[ self.id ]
+    "https://morgenbladet.no/fiksefest#/thing/%s" % self.id
   end
 
   private
@@ -44,6 +44,6 @@ class Thing < ApplicationRecord
   end
 
   def send_email
-    ThingsMailer.accepted(self).deliver_now
+    ThingsMailer.accepted(self).deliver_later
   end
 end
