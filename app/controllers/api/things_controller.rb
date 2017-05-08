@@ -1,3 +1,4 @@
+require 'slack'
 class Api::ThingsController < ApiController
   def index
     @things = Thing.published.order(created_at: :desc).page(params[:page]).per(params[:per_page] || 3)
@@ -16,7 +17,6 @@ class Api::ThingsController < ApiController
 
     respond_to do |format|
       if @thing.save
-        ThingsMailer.submitted(@thing).deliver_later
         format.json { render json: @thing, status: :created, location: api_thing_url(@thing) }
         format.html { redirect_to 'https://morgenbladet.no/fiksefest/#/takk' }
       else

@@ -1,5 +1,7 @@
 class Thing < ApplicationRecord
+  include ActionView::Helpers::TextHelper
   after_update :send_email, if: :just_accepted?
+  after_create :notify_slack
 
   has_attached_file :image,
     styles: {
@@ -37,6 +39,19 @@ class Thing < ApplicationRecord
     "https://morgenbladet.no/fiksefest#/thing/%s" % self.id
   end
 
+  def as_slack_attachment
+    {
+      fallback: "Ting #{self.title}: #{self.frontend_url}",
+      title: "Ting: <#{self.frontend_url}|#{self.title}>",
+      thumb_url: self.image.url(:tiny),
+      fields: [
+        { title: 'Historie', value: truncate(self.description, length: 100)},
+        { title: 'Innsender', value: self.owner, short: true},
+        { title: 'E-post',   value: self.email, short: true}
+      ]
+    }
+  end
+
   private
 
   def just_accepted?
@@ -45,5 +60,9 @@ class Thing < ApplicationRecord
 
   def send_email
     ThingsMailer.accepted(self).deliver_later
+  end
+
+  def notify_slack
+    NotifySlackJob.perform_later "Ny ting!", [ as_slack_attachment ]
   end
 end
