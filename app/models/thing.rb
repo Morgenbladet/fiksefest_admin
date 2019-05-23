@@ -30,7 +30,7 @@ class Thing < ApplicationRecord
 
   scope :published, -> { where(status: 'accepted') }
 
-  has_many :comments, -> { order(created_at: :asc) }
+  has_many :comments, -> { order(created_at: :asc) }, dependent: :destroy
   has_many :published_comments,
     -> { order(created_at: :asc).where(published: true) },
     class_name: 'Comment'
