@@ -7,7 +7,7 @@ class Api::ThingsController < ApiController
   end
 
   def show
-    @thing = Thing.find(params[:id])
+    @thing = Thing.published.find(params[:id])
 
     render json: @thing, include: ['comments']
   end
